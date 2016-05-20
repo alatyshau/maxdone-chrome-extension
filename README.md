@@ -1,7 +1,7 @@
 # Расширение для Google Chrome для Maxdone
 
 Выглядит это так:
-[[https://raw.githubusercontent.com/alatyshau/maxdone-chrome-extension/master/web/screenshot.png|alt=Screenshot]]
+![Screenshot](https://raw.githubusercontent.com/alatyshau/maxdone-chrome-extension/master/web/screenshot.png "Screenshot")
 
 Список фич:
 * Категориям назначаются цвета, и задачки получают слева тоненькие полосочки (шевроны) соответствующего цвета -- у меня в жизни все дела поделены ровно на четыре категории, соответственно четыре цвета на все задачи (ваши цвета вы можете настроить подредактировав CSS файл)
