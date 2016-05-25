@@ -11,9 +11,10 @@ function rebuildChevrons(highlightedTasks) {
 
 		// construct chevron div
 		var chevronElem = root.firstElementChild;
+		var taskElem;
 		if (!chevronElem.classList.contains("taskChevron")) {
-			var day = "??";
-			var taskElem = root.firstElementChild;
+			var day = "";
+			taskElem = root.firstElementChild;
 			var dateElem = taskElem.nextElementSibling.firstElementChild;
 			if (dateElem && dateElem.classList.contains("date")) {
 				var dateVal = dateElem.innerText;
@@ -42,19 +43,16 @@ function rebuildChevrons(highlightedTasks) {
 						date = today;
 					}
 				}
-				day = ["ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"][date.getDay()];
+				day = [ "ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС" ][date
+						.getDay()];
 			}
 
-			var chevronElem = document.createElement('div');
+			chevronElem = document.createElement('div');
 			chevronElem.className = "taskChevron";
+			chevronElem.rootClassName = root.className;
 			root.insertBefore(chevronElem, taskElem);
 
 			var taskHighlighter = document.createElement('div');
-			// console.log(taskElem.getAttribute("taskid") + " - " +
-			// taskElem.className + " - " + taskElem.title);
-			if (highlightedTasks[taskElem.getAttribute("taskid")] == "YES") {
-				root.classList.add('highlightedRow');
-			}
 			taskHighlighter.className = "taskHighlighter";
 			taskHighlighter.addEventListener("mouseenter", function(e) {
 				e.target.className = 'taskHighlighter-on';
@@ -64,32 +62,70 @@ function rebuildChevrons(highlightedTasks) {
 			});
 			taskHighlighter.addEventListener("click", function(e) {
 				var myElem = e.target;
-				var taskid = myElem.nextElementSibling.getAttribute("taskid");
-				if (highlightedTasks[taskid] == "YES") {
+				var taskid = myElem.nextElementSibling.nextElementSibling.getAttribute("taskid");
+				if (highlightedTasks[taskid] == "YELLOW") {
+					highlightedTasks[taskid] = "GREEN";
+					myElem.parentElement.classList.toggle('highlightedRow');
+					myElem.parentElement.classList.toggle('highlightedRow2');
+				} else if (highlightedTasks[taskid] == "GREEN") {
 					highlightedTasks[taskid] = "NO";
+					myElem.parentElement.classList.toggle('highlightedRow2');
 				} else {
-					highlightedTasks[taskid] = "YES";
+					highlightedTasks[taskid] = "YELLOW";
+					myElem.parentElement.classList.toggle('highlightedRow');
 				}
-				myElem.parentElement.classList.toggle('highlightedRow');
 			});
-			taskHighlighter.innerText = day;
+			taskHighlighter.innerText = "☻";
 			root.insertBefore(taskHighlighter, taskElem);
+			
+			var dayInfoElem = document.createElement('div');
+			dayInfoElem.className = "dayInfoElem";
+			dayInfoElem.innerText = day;
+			root.insertBefore(dayInfoElem, taskElem);
+		} else {
+			taskElem = root.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling;
 		}
 
 		// reflect right color in chevron div
 		var bottomElems = root.lastElementChild.children;
-		var projectLabel = null;
+		var category = null;
 		for (var k = 0; k < bottomElems.length; k++) {
 			var bottomElem = bottomElems[k];
 			if (bottomElem.classList.contains("project-label")) {
-				projectLabel = bottomElem.innerText;
-				bottomElem.classList.add("project-" + projectLabel);
+				category = bottomElem.innerText.replace(/[ ,.#{}]/g, "-");
+				// bottomElem.classList.add("project-" + projectLabel);
 				break;
 			}
 		}
-		chevronElem.className = "taskChevron chevron-" + projectLabel;
+		root.className = chevronElem.rootClassName + " taskBlock-" + category + " ";
+		if (highlightedTasks[taskElem.getAttribute("taskid")] == "YELLOW") {
+			root.classList.add('highlightedRow');
+		} else if (highlightedTasks[taskElem.getAttribute("taskid")] == "GREEN") {
+			root.classList.add('highlightedRow2');
+		}
+
+		// transform * into <b>
+		var taskTitle = taskElem.title;
+
+		var justWrapped = false;
+		var tokens = taskTitle.split("*");
+		if (tokens.length > 1) {
+			for (var k = 0; k < tokens.length; k++) {
+				if (!justWrapped && tokens[k].length > 0
+						&& tokens[k].trim() == tokens[k]) {
+					tokens[k] = "<span class=\"emphasizedTextInTitle\">" + tokens[k] + "</span>";
+					justWrapped = true;
+				} else {
+					justWrapped = false;
+				}
+				taskElem.innerHTML = tokens.join("*");
+			}
+		} else {
+			taskElem.innerHTML = taskTitle;
+		}
 	}
 }
+
 if (siteName == "maxdone.micromiles.co") {
 	var mainContainer = document.getElementById("mainContainer");
 	if (!mainContainer.observingChanges) {
@@ -115,6 +151,7 @@ if (siteName == "maxdone.micromiles.co") {
 		});
 	}
 }
+
 /*
  * http://stackoverflow.com/questions/25335648/how-to-intercept-all-ajax-requests-made-by-different-js-libraries
  * (function(open) { console.log("Within!"); XMLHttpRequest.prototype.open =

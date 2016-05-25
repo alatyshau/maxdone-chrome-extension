@@ -3,6 +3,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		chrome.tabs.insertCSS(tab.id, {
 			file : "maxdone.css"
 		});
+		chrome.tabs.insertCSS(tab.id, {
+			file : "maxdone-local.css"
+		});
 		chrome.tabs.executeScript(tab.id, {
 			file : 'maxdone.js'
 		});

@@ -1,0 +1,91 @@
+/**********************/
+/* override core styles */
+span.emphasizedTextInTitle {
+	/* override here */
+	
+}
+
+div.highlightedRow {
+	/* override here */
+	
+}
+
+div.highlightedRow2 {
+	/* override here */
+	
+}
+
+div.taskHighlighter-on {
+	/* override here */
+	
+}
+
+div.taskHighlighter {
+	/* override here */
+	
+}
+
+div.dayInfoElem {
+	/* override here */
+	
+}
+
+div.taskChevron {
+	/* override here */
+	
+}
+
+/**********************/
+/* category SELF-MANAGEMENT */
+div.taskBlock-SELF-MANAGEMENT div.project-label {
+	color: rgb(238, 120, 230) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-SELF-MANAGEMENT div.taskChevron {
+	background-color: rgb(238, 120, 230); /* rgb(180, 53, 18); */
+}
+
+/**********************/
+/* category WORK */
+div.taskBlock-WORK div.project-label {
+	color: rgb(46, 117, 181) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-WORK div.taskChevron {
+	background-color: rgb(46, 117, 181);
+}
+
+/**********************/
+/* category БЫТ-и-СЕМЬЯ */
+div.taskBlock-БЫТ-и-СЕМЬЯ div.taskChevron {
+	background-color: rgb(255, 192, 0);
+}
+
+div.taskBlock-БЫТ-и-СЕМЬЯ div.project-label {
+	color: rgb(255, 192, 0) !important;
+	font-weight: bold;
+}
+
+/**********************/
+/* category ОБЩЕСТВОР */
+div.taskBlock-ОБЩЕСТВОР div.project-label {
+	color: rgb(22, 167, 101) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-ОБЩЕСТВОР div.taskChevron {
+	background-color: rgb(22, 167, 101); /* rgb(237, 125, 49); */
+}
+
+/**********************/
+/* category ..#{Тест, тест, тест}#.. */
+div.taskBlock-----Тест--тест--тест---- div.project-label {
+	color: red !important;
+	font-weight: bold;
+}
+
+div.taskBlock-----Тест--тест--тест---- div.taskChevron {
+	background-color: red;
+}

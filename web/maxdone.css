@@ -1,27 +1,38 @@
+span.emphasizedTextInTitle {
+	font-weight: bolder;
+	background-color: silver;
+}
+
 div.highlightedRow {
-	background-color: yellow;
+    background-color: yellow;
+}
+
+div.highlightedRow2 {
+    background-color: #ADFF2F;
 }
 
 div.taskHighlighter-on {
-	/*border: 1px solid silver;*/
 	position: absolute;
 	font-family: Arial Black;
 	color: yellow;
-	left: 16px;
-	bottom: 0px;
-	/*width: 8px;
-	height: 8px;*/
+	left: 8px;
+	top: 0px;
 }
 
 div.taskHighlighter {
-	/*border: 1px solid white;*/
+    position: absolute;
+    font-family: Arial Black;
+    color: white;
+    left: 8px;
+    top: 0px;
+}
+
+div.dayInfoElem {
     position: absolute;
     font-family: Arial Black;
     color: silver;
     left: 16px;
     bottom: 0px;
-    /*width: 8px;
-    height: 8px;*/
 }
 
 div.taskChevron {
@@ -30,40 +41,4 @@ div.taskChevron {
 	width: 2px;
 	height: 100%;
 	background-color: #eee;
-}
-
-div.project-SELF-MANAGEMENT {
-	color: rgb(238, 120, 230) !important;
-	font-weight: bold;
-}
-
-div.project-WORK {
-	color: rgb(46, 117, 181) !important;
-	font-weight: bold;
-}
-
-div.project-БЫТ-и-СЕМЬЯ {
-	color: rgb(255, 192, 0) !important;
-	font-weight: bold;
-}
-
-div.project-ОБЩЕСТВОР {
-	color: rgb(22, 167, 101) !important;
-	font-weight: bold;
-}
-
-div.chevron-SELF-MANAGEMENT {
-	background-color: rgb(238, 120, 230); /* rgb(180, 53, 18); */
-}
-
-div.chevron-WORK {
-	background-color: rgb(46, 117, 181);
-}
-
-div.chevron-БЫТ-и-СЕМЬЯ {
-	background-color: rgb(255, 192, 0);
-}
-
-div.chevron-ОБЩЕСТВОР {
-	background-color: rgb(22, 167, 101); /* rgb(237, 125, 49); */
 }
