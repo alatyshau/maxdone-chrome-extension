@@ -25,6 +25,11 @@ div.taskHighlighter {
 	
 }
 
+div.dayInfoElem-on {
+	/* override here */
+	
+}
+
 div.dayInfoElem {
 	/* override here */
 	

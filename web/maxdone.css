@@ -1,6 +1,7 @@
 span.emphasizedTextInTitle {
 	font-weight: bolder;
 	background-color: silver;
+	font-family: Arial Black;
 }
 
 div.highlightedRow {
@@ -25,6 +26,14 @@ div.taskHighlighter {
     color: white;
     left: 8px;
     top: 0px;
+}
+
+div.dayInfoElem-on {
+    position: absolute;
+    font-family: Arial Black;
+    color: yellow;
+    left: 16px;
+    bottom: 0px;
 }
 
 div.dayInfoElem {

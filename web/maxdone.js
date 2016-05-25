@@ -80,6 +80,27 @@ function rebuildChevrons(highlightedTasks) {
 			
 			var dayInfoElem = document.createElement('div');
 			dayInfoElem.className = "dayInfoElem";
+			dayInfoElem.addEventListener("mouseenter", function(e) {
+				e.target.className = 'dayInfoElem-on';
+			});
+			dayInfoElem.addEventListener("mouseleave", function(e) {
+				e.target.className = 'dayInfoElem';
+			});
+			dayInfoElem.addEventListener("click", function(e) {
+				var myElem = e.target;
+				var taskid = myElem.nextElementSibling.getAttribute("taskid");
+				if (highlightedTasks[taskid] == "YELLOW") {
+					highlightedTasks[taskid] = "GREEN";
+					myElem.parentElement.classList.toggle('highlightedRow');
+					myElem.parentElement.classList.toggle('highlightedRow2');
+				} else if (highlightedTasks[taskid] == "GREEN") {
+					highlightedTasks[taskid] = "NO";
+					myElem.parentElement.classList.toggle('highlightedRow2');
+				} else {
+					highlightedTasks[taskid] = "YELLOW";
+					myElem.parentElement.classList.toggle('highlightedRow');
+				}
+			});
 			dayInfoElem.innerText = day;
 			root.insertBefore(dayInfoElem, taskElem);
 		} else {
