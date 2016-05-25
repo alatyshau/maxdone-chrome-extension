@@ -64,12 +64,13 @@ function rebuildChevrons(highlightedTasks) {
 				var myElem = e.target;
 				var taskid = myElem.nextElementSibling.nextElementSibling.getAttribute("taskid");
 				if (highlightedTasks[taskid] == "YELLOW") {
-					highlightedTasks[taskid] = "GREEN";
-					myElem.parentElement.classList.toggle('highlightedRow');
-					myElem.parentElement.classList.toggle('highlightedRow2');
-				} else if (highlightedTasks[taskid] == "GREEN") {
 					highlightedTasks[taskid] = "NO";
-					myElem.parentElement.classList.toggle('highlightedRow2');
+//					highlightedTasks[taskid] = "GREEN";
+					myElem.parentElement.classList.toggle('highlightedRow');
+//					myElem.parentElement.classList.toggle('highlightedRow2');
+//				} else if (highlightedTasks[taskid] == "GREEN") {
+//					highlightedTasks[taskid] = "NO";
+//					myElem.parentElement.classList.toggle('highlightedRow2');
 				} else {
 					highlightedTasks[taskid] = "YELLOW";
 					myElem.parentElement.classList.toggle('highlightedRow');
@@ -90,12 +91,13 @@ function rebuildChevrons(highlightedTasks) {
 				var myElem = e.target;
 				var taskid = myElem.nextElementSibling.getAttribute("taskid");
 				if (highlightedTasks[taskid] == "YELLOW") {
-					highlightedTasks[taskid] = "GREEN";
-					myElem.parentElement.classList.toggle('highlightedRow');
-					myElem.parentElement.classList.toggle('highlightedRow2');
-				} else if (highlightedTasks[taskid] == "GREEN") {
 					highlightedTasks[taskid] = "NO";
-					myElem.parentElement.classList.toggle('highlightedRow2');
+//					highlightedTasks[taskid] = "GREEN";
+					myElem.parentElement.classList.toggle('highlightedRow');
+//					myElem.parentElement.classList.toggle('highlightedRow2');
+//				} else if (highlightedTasks[taskid] == "GREEN") {
+//					highlightedTasks[taskid] = "NO";
+//					myElem.parentElement.classList.toggle('highlightedRow2');
 				} else {
 					highlightedTasks[taskid] = "YELLOW";
 					myElem.parentElement.classList.toggle('highlightedRow');
