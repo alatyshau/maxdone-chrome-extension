@@ -1,4 +1,4 @@
-/**********************/
+﻿/**********************/
 /* override core styles */
 span.emphasizedTextInTitle {
 	/* override here */
@@ -37,51 +37,70 @@ div.dayInfoElem {
 
 div.taskChevron {
 	/* override here */
-	
+	width: 4px;
 }
 
 /**********************/
-/* category SELF-MANAGEMENT */
-div.taskBlock-SELF-MANAGEMENT div.project-label {
-	color: rgb(238, 120, 230) !important;
-	font-weight: bold;
-}
-
-div.taskBlock-SELF-MANAGEMENT div.taskChevron {
-	background-color: rgb(238, 120, 230); /* rgb(180, 53, 18); */
-}
-
-/**********************/
-/* category WORK */
-div.taskBlock-WORK div.project-label {
-	color: rgb(46, 117, 181) !important;
-	font-weight: bold;
-}
-
-div.taskBlock-WORK div.taskChevron {
-	background-color: rgb(46, 117, 181);
-}
-
-/**********************/
-/* category БЫТ-и-СЕМЬЯ */
-div.taskBlock-БЫТ-и-СЕМЬЯ div.taskChevron {
-	background-color: rgb(255, 192, 0);
-}
-
-div.taskBlock-БЫТ-и-СЕМЬЯ div.project-label {
-	color: rgb(255, 192, 0) !important;
-	font-weight: bold;
-}
-
-/**********************/
-/* category ОБЩЕСТВОР */
-div.taskBlock-ОБЩЕСТВОР div.project-label {
+/* category ОБЩЕТВОР */
+div.taskBlock-ОБЩЕТВОР div.project-label {
 	color: rgb(22, 167, 101) !important;
 	font-weight: bold;
 }
 
 div.taskBlock-ОБЩЕСТВОР div.taskChevron {
 	background-color: rgb(22, 167, 101); /* rgb(237, 125, 49); */
+}
+
+/**********************/
+/* category РАБОТА */
+div.taskBlock-РАБОТА div.project-label {
+	color: rgb(46, 117, 181) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-РАБОТА div.taskChevron {
+	background-color: rgb(46, 117, 181);
+}
+
+/**********************/
+/* category РЕЖИМ */
+div.taskBlock-РЕЖИМ div.project-label {
+	color: black !important;
+	font-weight: bold;
+}
+
+div.taskBlock-РЕЖИМ div.taskChevron {
+	background-color: black;
+}
+
+div.taskBlock-РЕЖИМ div.taskTitle {
+	background-color: #F8F8FF;
+}
+
+div.taskBlock-РЕЖИМ.highlightedRow div.taskTitle {
+	background-color: yellow;
+}
+
+/**********************/
+/* category САМООБРАЗВИТ */
+div.taskBlock-САМООБРАЗВИТ div.project-label {
+	color: rgb(238, 120, 230) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-САМООБРАЗВИТ div.taskChevron {
+	background-color: rgb(238, 120, 230); /* rgb(180, 53, 18); */
+}
+
+/**********************/
+/* category СЕМЬЯ-и-БЫТ */
+div.taskBlock-СЕМЬЯ-и-БЫТ div.taskChevron {
+	background-color: rgb(255, 192, 0);
+}
+
+div.taskBlock-СЕМЬЯ-и-БЫТ div.project-label {
+	color: rgb(255, 192, 0) !important;
+	font-weight: bold;
 }
 
 /**********************/
