@@ -63,21 +63,21 @@ div.taskBlock-РАБОТА div.taskChevron {
 }
 
 /**********************/
-/* category РЕЖИМ */
-div.taskBlock-РЕЖИМ div.project-label {
+/* category !РЕЖИМ */
+div.taskBlock--РЕЖИМ div.project-label {
 	color: black !important;
 	font-weight: bold;
 }
 
-div.taskBlock-РЕЖИМ div.taskChevron {
+div.taskBlock--РЕЖИМ div.taskChevron {
 	background-color: black;
 }
 
-div.taskBlock-РЕЖИМ div.taskTitle {
+div.taskBlock--РЕЖИМ div.taskTitle {
 	background-color: #F8F8FF;
 }
 
-div.taskBlock-РЕЖИМ.highlightedRow div.taskTitle {
+div.taskBlock--РЕЖИМ.highlightedRow div.taskTitle {
 	background-color: yellow;
 }
 

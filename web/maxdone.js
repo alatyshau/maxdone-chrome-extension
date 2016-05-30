@@ -1,4 +1,4 @@
-var siteName = window.location.hostname;
+﻿var siteName = window.location.hostname;
 if (siteName.startsWith("www.")) {
 	siteName = siteName.substring(4);
 }
@@ -115,7 +115,7 @@ function rebuildChevrons(highlightedTasks) {
 		for (var k = 0; k < bottomElems.length; k++) {
 			var bottomElem = bottomElems[k];
 			if (bottomElem.classList.contains("project-label")) {
-				category = bottomElem.innerText.replace(/[ ,.#{}]/g, "-");
+				category = bottomElem.innerText.replace(/[ ,.#{}!?]/g, "-");
 				// bottomElem.classList.add("project-" + projectLabel);
 				break;
 			}
