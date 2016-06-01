@@ -33,12 +33,11 @@ function rebuildChevrons(highlightedTasks) {
 					var dateSegments = dateVal.split("/");
 					date = new Date();
 					date.setFullYear(dateSegments[2]);
-					date.setMonth(dateSegments[1] - 1);
-					date.setDate(dateSegments[0]);
 					date.setHours(0);
 					date.setMinutes(0);
 					date.setSeconds(0);
 					date.setMilliseconds(0);
+					date.setMonth(dateSegments[1] - 1, dateSegments[0]);
 					if (date < today) {
 						date = today;
 					}
