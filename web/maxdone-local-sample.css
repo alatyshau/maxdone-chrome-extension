@@ -41,28 +41,6 @@ div.taskChevron {
 }
 
 /**********************/
-/* category ОБЩЕТВОР */
-div.taskBlock-ОБЩЕТВОР div.project-label {
-	color: rgb(22, 167, 101) !important;
-	font-weight: bold;
-}
-
-div.taskBlock-ОБЩЕТВОР div.taskChevron {
-	background-color: rgb(22, 167, 101); /* rgb(237, 125, 49); */
-}
-
-/**********************/
-/* category РАБОТА */
-div.taskBlock-РАБОТА div.project-label {
-	color: rgb(46, 117, 181) !important;
-	font-weight: bold;
-}
-
-div.taskBlock-РАБОТА div.taskChevron {
-	background-color: rgb(46, 117, 181);
-}
-
-/**********************/
 /* category !РЕЖИМ */
 div.taskBlock--РЕЖИМ div.project-label {
 	color: black !important;
@@ -82,25 +60,100 @@ div.taskBlock--РЕЖИМ.highlightedRow div.taskTitle {
 }
 
 /**********************/
-/* category САМООБРАЗВИТ */
-div.taskBlock-САМООБРАЗВИТ div.project-label {
+/* category EDU: misc */
+div.taskBlock-EDU--misc div.project-label {
 	color: rgb(238, 120, 230) !important;
 	font-weight: bold;
 }
 
-div.taskBlock-САМООБРАЗВИТ div.taskChevron {
+div.taskBlock-EDU--misc div.taskChevron {
 	background-color: rgb(238, 120, 230); /* rgb(180, 53, 18); */
 }
-
 /**********************/
-/* category СЕМЬЯ-и-БЫТ */
-div.taskBlock-СЕМЬЯ-и-БЫТ div.taskChevron {
+/* category HOME: misc */
+div.taskBlock-HOME--misc div.taskChevron {
 	background-color: rgb(255, 192, 0);
 }
 
-div.taskBlock-СЕМЬЯ-и-БЫТ div.project-label {
+div.taskBlock-HOME--misc div.project-label {
 	color: rgb(255, 192, 0) !important;
 	font-weight: bold;
+}
+
+/**********************/
+/* category SOCIO: misc */
+div.taskBlock-SOCIO--misc div.project-label {
+	color: rgb(22, 167, 101) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-SOCIO--misc div.taskChevron {
+	background-color: rgb(22, 167, 101); /* rgb(237, 125, 49); */
+}
+
+/**********************/
+/* category WORK */
+div.taskBlock-WORK1--strategic div.project-label {
+	color: rgb(46, 117, 181) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-WORK1--strategic div.taskChevron {
+	background-color: rgb(46, 117, 181);
+}
+
+div.taskBlock-WORK2--planning div.project-label {
+	color: rgb(46, 117, 181) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-WORK2--planning div.taskChevron {
+	background-color: rgb(46, 117, 181);
+}
+
+div.taskBlock-WORK3--meta-process div.project-label {
+	color: rgb(46, 117, 181) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-WORK3--meta-process div.taskChevron {
+	background-color: rgb(46, 117, 181);
+}
+
+div.taskBlock-WORK4--architecture div.project-label {
+	color: rgb(46, 117, 181) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-WORK4--architecture div.taskChevron {
+	background-color: rgb(46, 117, 181);
+}
+
+div.taskBlock-WORK5--engineering div.project-label {
+	color: rgb(46, 117, 181) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-WORK5--engineering div.taskChevron {
+	background-color: rgb(46, 117, 181);
+}
+
+div.taskBlock-WORK6--business div.project-label {
+	color: rgb(46, 117, 181) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-WORK6--business div.taskChevron {
+	background-color: rgb(46, 117, 181);
+}
+
+div.taskBlock-WORK7--misc div.project-label {
+	color: rgb(46, 117, 181) !important;
+	font-weight: bold;
+}
+
+div.taskBlock-WORK7--misc div.taskChevron {
+	background-color: rgb(46, 117, 181);
 }
 
 /**********************/

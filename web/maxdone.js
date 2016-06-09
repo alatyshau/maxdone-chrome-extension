@@ -6,6 +6,10 @@ if (siteName.startsWith("www.")) {
 function rebuildChevrons(highlightedTasks) {
 	var taskRowInfoBlocks = document.getElementsByClassName("taskRowInfoBlock");
 
+	var todayMinutes = 0;
+	var weekMinutes = 0;
+	var laterMinutes = 0;
+
 	for (var i = 0; i < taskRowInfoBlocks.length; i++) {
 		var root = taskRowInfoBlocks[i];
 
@@ -61,15 +65,16 @@ function rebuildChevrons(highlightedTasks) {
 			});
 			taskHighlighter.addEventListener("click", function(e) {
 				var myElem = e.target;
-				var taskid = myElem.nextElementSibling.nextElementSibling.getAttribute("taskid");
+				var taskid = myElem.nextElementSibling.nextElementSibling
+						.getAttribute("taskid");
 				if (highlightedTasks[taskid] == "YELLOW") {
 					highlightedTasks[taskid] = "NO";
-//					highlightedTasks[taskid] = "GREEN";
+					// highlightedTasks[taskid] = "GREEN";
 					myElem.parentElement.classList.toggle('highlightedRow');
-//					myElem.parentElement.classList.toggle('highlightedRow2');
-//				} else if (highlightedTasks[taskid] == "GREEN") {
-//					highlightedTasks[taskid] = "NO";
-//					myElem.parentElement.classList.toggle('highlightedRow2');
+					// myElem.parentElement.classList.toggle('highlightedRow2');
+					// } else if (highlightedTasks[taskid] == "GREEN") {
+					// highlightedTasks[taskid] = "NO";
+					// myElem.parentElement.classList.toggle('highlightedRow2');
 				} else {
 					highlightedTasks[taskid] = "YELLOW";
 					myElem.parentElement.classList.toggle('highlightedRow');
@@ -77,7 +82,7 @@ function rebuildChevrons(highlightedTasks) {
 			});
 			taskHighlighter.innerText = "☻";
 			root.insertBefore(taskHighlighter, taskElem);
-			
+
 			var dayInfoElem = document.createElement('div');
 			dayInfoElem.className = "dayInfoElem";
 			dayInfoElem.addEventListener("mouseenter", function(e) {
@@ -91,12 +96,12 @@ function rebuildChevrons(highlightedTasks) {
 				var taskid = myElem.nextElementSibling.getAttribute("taskid");
 				if (highlightedTasks[taskid] == "YELLOW") {
 					highlightedTasks[taskid] = "NO";
-//					highlightedTasks[taskid] = "GREEN";
+					// highlightedTasks[taskid] = "GREEN";
 					myElem.parentElement.classList.toggle('highlightedRow');
-//					myElem.parentElement.classList.toggle('highlightedRow2');
-//				} else if (highlightedTasks[taskid] == "GREEN") {
-//					highlightedTasks[taskid] = "NO";
-//					myElem.parentElement.classList.toggle('highlightedRow2');
+					// myElem.parentElement.classList.toggle('highlightedRow2');
+					// } else if (highlightedTasks[taskid] == "GREEN") {
+					// highlightedTasks[taskid] = "NO";
+					// myElem.parentElement.classList.toggle('highlightedRow2');
 				} else {
 					highlightedTasks[taskid] = "YELLOW";
 					myElem.parentElement.classList.toggle('highlightedRow');
@@ -114,12 +119,13 @@ function rebuildChevrons(highlightedTasks) {
 		for (var k = 0; k < bottomElems.length; k++) {
 			var bottomElem = bottomElems[k];
 			if (bottomElem.classList.contains("project-label")) {
-				category = bottomElem.innerText.replace(/[ ,.#{}!?]/g, "-");
+				category = bottomElem.innerText.replace(/[ ,.#{}!?:\/]/g, "-");
 				// bottomElem.classList.add("project-" + projectLabel);
 				break;
 			}
 		}
-		root.className = chevronElem.rootClassName + " taskBlock-" + category + " ";
+		root.className = chevronElem.rootClassName + " taskBlock-" + category
+				+ " ";
 		if (highlightedTasks[taskElem.getAttribute("taskid")] == "YELLOW") {
 			root.classList.add('highlightedRow');
 		} else if (highlightedTasks[taskElem.getAttribute("taskid")] == "GREEN") {
@@ -135,7 +141,8 @@ function rebuildChevrons(highlightedTasks) {
 			for (var k = 0; k < tokens.length; k++) {
 				if (!justWrapped && tokens[k].length > 0
 						&& tokens[k].trim() == tokens[k]) {
-					tokens[k] = "<span class=\"emphasizedTextInTitle\">" + tokens[k] + "</span>";
+					tokens[k] = "<span class=\"emphasizedTextInTitle\">"
+							+ tokens[k] + "</span>";
 					justWrapped = true;
 				} else {
 					justWrapped = false;
@@ -144,6 +151,85 @@ function rebuildChevrons(highlightedTasks) {
 			}
 		} else {
 			taskElem.innerHTML = taskTitle;
+		}
+
+		// count week hours
+		var section = root.parentElement.parentElement.parentElement;
+		if (taskTitle.startsWith("(")) {
+			var minutes = 0;
+			if (taskTitle.startsWith("(1)")) {
+				minutes = 60;
+			} else if (taskTitle.startsWith("(2)")) {
+				minutes = 120;
+			} else if (taskTitle.startsWith("(3)")) {
+				minutes = 180;
+			} else if (taskTitle.startsWith("(4)")) {
+				minutes = 240;
+			} else if (taskTitle.startsWith("(1.5)")) {
+				minutes = 90;
+			} else if (taskTitle.startsWith("(05)")) {
+				minutes = 30;
+			} else if (taskTitle.startsWith("(15м)")) {
+				minutes = 15;
+			} else if (taskTitle.startsWith("(10м)")) {
+				minutes = 10;
+			} else if (taskTitle.startsWith("(15m)")) {
+				minutes = 15;
+			} else if (taskTitle.startsWith("(10m)")) {
+				minutes = 10;
+			} else if (taskTitle.startsWith("(5м)")) {
+				minutes = 5;
+			} else if (taskTitle.startsWith("(5m)")) {
+				minutes = 5;
+			} else if (taskTitle.startsWith("(20m)")) {
+				minutes = 20;
+			} else if (taskTitle.startsWith("(20м)")) {
+				minutes = 20;
+			} else if (taskTitle.startsWith("(45m)")) {
+				minutes = 45;
+			} else if (taskTitle.startsWith("(45м)")) {
+				minutes = 45;
+			} else if (taskTitle.startsWith("(0.5)")) {
+				minutes = 30;
+			}
+			if (minutes > 0) {
+				if (section.id == "todayContent") {
+					todayMinutes += minutes;
+				} else if (section.id == "weekContent") {
+					weekMinutes += minutes;
+				} else if (section.id == "laterContent") {
+					laterMinutes += minutes;
+				}
+			}
+		}
+	}
+
+	// console.log("RESULT: " + (todayMinutes / 60) + " -- "
+	// + (weekMinutes / 60) + " -- " + (laterMinutes / 60));
+
+	updateHours("todayHeader", todayMinutes);
+	updateHours("weekHeader", weekMinutes);
+	updateHours("laterHeader", laterMinutes);
+}
+
+function updateHours(headerId, minutes) {
+	if (minutes == 0) {
+		return;
+	}
+	var headerEl = document.getElementById(headerId);
+	if (headerEl != null) {
+		var lastElem = headerEl.lastElementChild;
+		var hoursElemId = headerId + "-HoursEl";
+		var minutesHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -- запланировано: "
+				+ (minutes / 60) + " часов";
+		var hoursEl = lastElem.lastElementChild;
+		if (hoursEl.id == hoursElemId) {
+			hoursEl.innerHTML = minutesHTML;
+		} else {
+			hoursEl = document.createElement("span");
+			hoursEl.id = hoursElemId;
+			hoursEl.innerHTML = minutesHTML;
+			lastElem.appendChild(hoursEl);
 		}
 	}
 }
@@ -162,8 +248,12 @@ if (siteName == "maxdone.micromiles.co") {
 				scheduled = true;
 				setTimeout(function() {
 					scheduled = false;
-
+					observer.disconnect();
 					rebuildChevrons(highlightedTasks);
+					observer.observe(mainContainer, {
+						childList : true,
+						subtree : true
+					});
 				}, 1000);
 			}
 		});
