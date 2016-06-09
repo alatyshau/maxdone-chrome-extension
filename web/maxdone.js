@@ -181,6 +181,10 @@ function rebuildChevrons(highlightedTasks) {
 				minutes = 5;
 			} else if (taskTitle.startsWith("(5m)")) {
 				minutes = 5;
+			} else if (taskTitle.startsWith("(30м)")) {
+				minutes = 5;
+			} else if (taskTitle.startsWith("(30m)")) {
+				minutes = 5;
 			} else if (taskTitle.startsWith("(20m)")) {
 				minutes = 20;
 			} else if (taskTitle.startsWith("(20м)")) {
