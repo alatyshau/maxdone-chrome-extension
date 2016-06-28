@@ -22,6 +22,10 @@ function rebuildChevrons(highlightedTasks) {
 			var dateElem = taskElem.nextElementSibling.firstElementChild;
 			if (dateElem && dateElem.classList.contains("date")) {
 				var dateVal = dateElem.innerText;
+				if (dateVal) {
+					// Trim time part
+					dateVal = dateVal.replace(/ @ .*/, '')
+				}
 				var today = new Date();
 				today.setHours(0);
 				today.setMinutes(0);
