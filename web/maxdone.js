@@ -224,8 +224,19 @@ function updateHours(headerId, minutes) {
 	if (headerEl != null) {
 		var lastElem = headerEl.lastElementChild;
 		var hoursElemId = headerId + "-HoursEl";
-		var minutesHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -- запланировано: "
-				+ (minutes / 60) + " часов";
+		var minutesHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -- запланировано: ";
+		minutes = Math.round(minutes);
+		var mm = minutes % 60;
+		var hh = (minutes - mm) / 60;
+		if (hh > 0) {
+			minutesHTML += hh + "ч";
+		}
+		if (mm > 0) {
+			if (hh > 0) {
+				minutesHTML += " ";
+			}
+			minutesHTML += mm + "м";
+		}
 		var hoursEl = lastElem.lastElementChild;
 		if (hoursEl.id == hoursElemId) {
 			hoursEl.innerHTML = minutesHTML;
