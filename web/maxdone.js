@@ -160,7 +160,11 @@ function rebuildChevrons(highlightedTasks) {
 			var matchResult = taskDurationRegexp.exec(taskTitle);
 			var minutes = 0;
 			if (matchResult) {
-				minutes = parseFloat(matchResult[1]);
+				var numPart = matchResult[1];
+				if (numPart == "05") {
+					numPart = "0.5";
+				}
+				minutes = parseFloat(numPart);
 				var unit = matchResult[2];
 				if (typeof unit == "undefined" || "hч".indexOf(unit) != -1) {
 					minutes *= 60;
