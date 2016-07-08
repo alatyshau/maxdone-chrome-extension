@@ -160,45 +160,19 @@ function rebuildChevrons(highlightedTasks) {
 		// count week hours
 		var section = root.parentElement.parentElement.parentElement;
 		if (taskTitle.startsWith("(")) {
+			var taskDurationRegexp = /^\((\d+(?:\.\d+)?)(m|м|h|ч)?\)/;
+			var matchResult = taskDurationRegexp.exec(taskTitle);
 			var minutes = 0;
-			if (taskTitle.startsWith("(1)")) {
-				minutes = 60;
-			} else if (taskTitle.startsWith("(2)")) {
-				minutes = 120;
-			} else if (taskTitle.startsWith("(3)")) {
-				minutes = 180;
-			} else if (taskTitle.startsWith("(4)")) {
-				minutes = 240;
-			} else if (taskTitle.startsWith("(1.5)")) {
-				minutes = 90;
-			} else if (taskTitle.startsWith("(05)")) {
-				minutes = 30;
-			} else if (taskTitle.startsWith("(15м)")) {
-				minutes = 15;
-			} else if (taskTitle.startsWith("(10м)")) {
-				minutes = 10;
-			} else if (taskTitle.startsWith("(15m)")) {
-				minutes = 15;
-			} else if (taskTitle.startsWith("(10m)")) {
-				minutes = 10;
-			} else if (taskTitle.startsWith("(5м)")) {
-				minutes = 5;
-			} else if (taskTitle.startsWith("(5m)")) {
-				minutes = 5;
-			} else if (taskTitle.startsWith("(30м)")) {
-				minutes = 5;
-			} else if (taskTitle.startsWith("(30m)")) {
-				minutes = 5;
-			} else if (taskTitle.startsWith("(20m)")) {
-				minutes = 20;
-			} else if (taskTitle.startsWith("(20м)")) {
-				minutes = 20;
-			} else if (taskTitle.startsWith("(45m)")) {
-				minutes = 45;
-			} else if (taskTitle.startsWith("(45м)")) {
-				minutes = 45;
-			} else if (taskTitle.startsWith("(0.5)")) {
-				minutes = 30;
+			if (matchResult) {
+				var numPart = matchResult[1];
+				if (numPart == "05") {
+					numPart = "0.5";
+				}
+				minutes = parseFloat(numPart);
+				var unit = matchResult[2];
+				if (typeof unit == "undefined" || "hч".indexOf(unit) != -1) {
+					minutes *= 60;
+				}
 			}
 			if (minutes > 0) {
 				if (section.id == "todayContent") {
