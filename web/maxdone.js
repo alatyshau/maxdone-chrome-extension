@@ -3,7 +3,7 @@ if (siteName.startsWith("www.")) {
 	siteName = siteName.substring(4);
 }
 
-function rebuildChevrons(highlightedTasks) {
+function rebuildChevrons(highlightedTasks, overdueToday) {
 	var taskRowInfoBlocks = document.getElementsByClassName("taskRowInfoBlock");
 
 	var todayMinutes = 0;
@@ -32,8 +32,15 @@ function rebuildChevrons(highlightedTasks) {
 				today.setSeconds(0);
 				today.setMilliseconds(0);
 				var date;
-				if (dateVal == "сегодня" || dateVal == "вчера") {
+				if (dateVal == "сегодня") {
 					date = today;
+				} else if (dateVal == "вчера") {
+					if (overdueToday) {
+						date = today;
+					} else {
+						date = today;
+						date.setDate(date.getDate() - 1);
+					}
 				} else if (dateVal == "завтра") {
 					date = today;
 					date.setDate(date.getDate() + 1);
@@ -46,7 +53,7 @@ function rebuildChevrons(highlightedTasks) {
 					date.setSeconds(0);
 					date.setMilliseconds(0);
 					date.setMonth(dateSegments[1] - 1, dateSegments[0]);
-					if (date < today) {
+					if (overdueToday && date < today) {
 						date = today;
 					}
 				}
@@ -232,29 +239,38 @@ if (siteName == "maxdone.micromiles.co") {
 	if (!mainContainer.observingChanges) {
 		mainContainer.observingChanges = true;
 
-		var highlightedTasks = [];
-		rebuildChevrons(highlightedTasks);
-
-		var scheduled = false;
-		var observer = new MutationObserver(function(mutations) {
-			if (!scheduled) {
-				scheduled = true;
-				setTimeout(function() {
-					scheduled = false;
-					observer.disconnect();
-					rebuildChevrons(highlightedTasks);
-					observer.observe(mainContainer, {
-						childList : true,
-						subtree : true
-					});
-				}, 100);
-			}
-		});
-		observer.observe(mainContainer, {
-			childList : true,
-			subtree : true
+		// Use default value overdueToday = true.
+		chrome.storage.sync.get({
+			overdueToday: true
+		}, function(items) {
+			setupObserver(items.overdueToday);
 		});
 	}
+}
+
+function setupObserver(overdueToday) {
+	var highlightedTasks = [];
+	rebuildChevrons(highlightedTasks, overdueToday);
+
+	var scheduled = false;
+	var observer = new MutationObserver(function(mutations) {
+		if (!scheduled) {
+			scheduled = true;
+			setTimeout(function() {
+				scheduled = false;
+				observer.disconnect();
+				rebuildChevrons(highlightedTasks, overdueToday);
+				observer.observe(mainContainer, {
+					childList : true,
+					subtree : true
+				});
+			}, 100);
+		}
+	});
+	observer.observe(mainContainer, {
+		childList : true,
+		subtree : true
+	});
 }
 
 /*
