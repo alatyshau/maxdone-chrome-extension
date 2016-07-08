@@ -258,7 +258,7 @@ if (siteName == "maxdone.micromiles.co") {
 						childList : true,
 						subtree : true
 					});
-				}, 1000);
+				}, 100);
 			}
 		});
 		observer.observe(mainContainer, {
