@@ -118,7 +118,7 @@ function rebuildChevrons(highlightedTasks, overdueToday) {
 					myElem.parentElement.classList.toggle('highlightedRow');
 				}
 			});
-			dayInfoElem.innerText = day;
+			if (day) dayInfoElem.innerText = day;
 			root.insertBefore(dayInfoElem, taskElem);
 		} else {
 			taskElem = root.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling;
