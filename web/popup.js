@@ -1,8 +1,10 @@
 // Saves options to chrome.storage
 function save_options() {
   var overdueTodayValue = document.getElementById('overdueToday').checked;
+  var activeTaskTimerValue = document.getElementById('activeTaskTimer').checked;
   chrome.storage.sync.set({
-	  overdueToday: overdueTodayValue
+	  overdueToday: overdueTodayValue,
+    activeTaskTimer: activeTaskTimerValue
   }, function() {
     // Update status to let user know options were saved.
     var status = document.getElementById('status');
@@ -17,9 +19,11 @@ function save_options() {
 function restore_options() {
   // Use default value overdueToday = true.
   chrome.storage.sync.get({
-    overdueToday: true
+    overdueToday: true,
+    activeTaskTimer: false
   }, function(items) {
     document.getElementById('overdueToday').checked = items.overdueToday;
+    document.getElementById('activeTaskTimer').checked = items.activeTaskTimer;
   });
 }
 
