@@ -149,7 +149,6 @@ function rebuildChevrons(highlightedTasks, options) {
             chevronElem.className = "taskChevron";
             chevronElem.rootClassName = root.className;
             root.insertBefore(chevronElem, taskElem);
-
             var taskHighlighter = document.createElement('div');
             taskHighlighter.className = "taskHighlighter";
             taskHighlighter.addEventListener("mouseenter", function(e) {
