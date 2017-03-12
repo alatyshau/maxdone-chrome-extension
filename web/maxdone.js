@@ -4,12 +4,23 @@ if (siteName.startsWith("www.")) {
     siteName = siteName.substring(4);
 }
 
+function updateTitle(taskid, newTitle) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', `//maxdone.micromiles.co/services/v1/tasks/${taskid}/title`);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status !== 200) {
+            console.error('Title change failed: ' + xhr.status);
+        }
+    };
+    xhr.send(newTitle);
+}
+
 function startTimer(taskid, myElem) {
     var startedAt = {};
     startedAt[taskid] = Date.now();
     chrome.storage.local.set(startedAt);
     myElem.parentElement.classList.toggle('highlightedRow');
-
 }
 
 function stopTimer(taskid, myElem) {
@@ -19,17 +30,7 @@ function stopTimer(taskid, myElem) {
         const newTitle = addTimeToTitle(oldTitle, timeElapsed)
         myElem.nextElementSibling.setAttribute("title", newTitle);
         myElem.parentElement.classList.toggle('highlightedRow');
-        // save changes
-        var xhr = new XMLHttpRequest();
-        xhr.open('PUT', `//maxdone.micromiles.co/services/v1/tasks/${taskid}/title`);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            if (xhr.status !== 200) {
-                console.log('Title change failed: ' + xhr.status);
-            }
-        };
-        console.log(newTitle);
-        xhr.send(newTitle);
+        updateTitle(taskid, newTitle);
     });
 }
 
@@ -218,6 +219,7 @@ function rebuildChevrons(highlightedTasks, options) {
 
         // transform into <b>
         var taskTitle = taskElem.title;
+        var taskId = taskElem.getAttribute("taskid");
 
         var justWrapped = false;
         var tokens = taskTitle.split("*");
@@ -265,10 +267,15 @@ function rebuildChevrons(highlightedTasks, options) {
                     completedPlannedMinutes += minutes;
                 }
             }
-            // count actual hours fro completed tasks
         }
-        if (section.id == "completedContent" && taskTitle.endsWith("]")) {
-            completedActualMinutes += extractTime(taskTitle);
+        if (taskTitle.endsWith("]")) {
+            if (section.id === "completedContent") {
+                // count actual hours for completed tasks
+                completedActualMinutes += extractTime(taskTitle);
+            } else if (options.activeTaskTimer && (section.id === "weekContent" || | section.id === "laterContent")) {
+                // remove [] for planned tasks
+                updateTitle(taskId, taskTitle.slice(0, taskTitle.lastIndexOf(" [")));
+            }
         }
     }
 
