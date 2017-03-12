@@ -272,7 +272,7 @@ function rebuildChevrons(highlightedTasks, options) {
             if (section.id === "completedContent") {
                 // count actual hours for completed tasks
                 completedActualMinutes += extractTime(taskTitle);
-            } else if (options.activeTaskTimer && (section.id === "weekContent" || | section.id === "laterContent")) {
+            } else if (options.activeTaskTimer && (section.id === "weekContent" || section.id === "laterContent")) {
                 // remove [] for planned tasks
                 updateTitle(taskId, taskTitle.slice(0, taskTitle.lastIndexOf(" [")));
             }
